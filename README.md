@@ -34,11 +34,13 @@ Modifies ACPI tables via GRUB to expose 64-bit MMIO region above RAM.
 - Kernel parameters: `pci=realloc pci=nocrs pci=assign-busses`
 
 ### 2. UEFI Patching (Alternative - Requires BIOS Flash)
-Patch BIOS directly to extend MMIO space to 512GB.
+Patch BIOS directly to remove 64GB BAR limit from PciBus module.
 
 **Files:**
+- `bios-patched/GIGABYTE.BIN` - Ready-to-flash patched BIOS (F23c)
 - `uefi-tools/` - UEFIPatch and UEFITool binaries
-- `uefi-patches/` - Haswell/Broadwell patches from ReBarUEFI
+- `uefi-patches/X99_Custom_Patches.txt` - Custom patch for this specific BIOS
+- `uefi-patches/` - Additional Haswell/Broadwell patches from ReBarUEFI
 
 ### 3. ReBarDxe Module (Full ReBAR - Requires BIOS Flash)
 DXE driver for complete Resizable BAR support.
@@ -86,6 +88,8 @@ x99-udp4-rebar/
 ├── README.md
 ├── APPLIED_CHANGES.md          # Detailed DSDT modification notes
 ├── BIOS_MODDING_GUIDE.md       # Full UEFI patching guide
+├── bios-patched/
+│   └── GIGABYTE.BIN            # Ready-to-flash patched BIOS
 ├── dsdt-original/
 │   ├── DSDT.aml                # Original binary
 │   └── DSDT.dsl                # Original decompiled
@@ -96,6 +100,7 @@ x99-udp4-rebar/
 │   ├── UEFIPatch               # BIOS patching tool
 │   └── uefitool                # BIOS analysis tool
 └── uefi-patches/
+    ├── X99_Custom_Patches.txt  # Custom patch for GA-X99-UD4P
     ├── HswAbove4G.txt          # Haswell/Broadwell MMIO patches
     ├── patches.txt             # BAR size limit patches
     └── ReBarDxe.ffs            # ReBAR DXE module

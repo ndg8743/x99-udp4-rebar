@@ -1,0 +1,7 @@
+# Custom patches for Gigabyte GA-X99-UD4P F23c BIOS
+# Created by analyzing PciBus module (3C1DE39F-D207-408A-AACC-731CFB7F1DD7)
+
+# PciBus | Remove 64GB BAR size limit (change to unlimited)
+# Original: mov rax, 0x8FFFFFFFF (64GB)
+# Patched:  mov rax, 0xFFFFFFFFFFFFFFFF (unlimited)
+3C1DE39F-D207-408A-AACC-731CFB7F1DD7 10 P:48B8FFFFFFFF080000004C3B:48B8FFFFFFFFFFFFFF4C3B
